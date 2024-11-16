@@ -1,0 +1,24 @@
+name: Static Analysis
+on:
+  pull_request:
+    paths: ['.github/workflows/*.ya?ml']
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          echo "::debug::this is a debug message"
+          echo "Example Title" >> "${GITHUB_STEP_SUMMARY}"
+          echo "Example Summary" >> "${GITHUB_STEP_SUMMARY}"
+      - uses: actions/checkout@v4
+      - name: Sleep for 120 seconds
+        run: sleep 120
+      - name: Install linter
+        run: docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest
