@@ -10,7 +10,10 @@ concurrency:
   cancel-in-progress: true
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
       - run: |
