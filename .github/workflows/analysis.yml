@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - run: echo "::debug::this is a debug message"
-      - run: echo "::notice::this is a notice message"
-      - run: echo "::warning::this is a warning message"
+      - run |
+        echo "::debug::this is a debug message"
+        echo "Example Title" >> "${GITHUB_STEP_SUMMARY}"
+        echo "Example Summary" >> "${GITHUB_STEP_SUMMARY}"
       - uses: actions/checkout@v4
       - name: Sleep for 120 seconds
         run: sleep 120
