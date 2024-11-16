@@ -14,6 +14,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo "::debug::this is a debug message"
+      - run: echo "::notice::this is a notice message"
+      - run: echo "::warning::this is a warning message"
       - uses: actions/checkout@v4
       - name: Sleep for 120 seconds
         run: sleep 120
