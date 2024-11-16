@@ -16,4 +16,3 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - run: echo "Hello, $USERNAME!"
-      - run: echo "Your password is $PASSWORD."
